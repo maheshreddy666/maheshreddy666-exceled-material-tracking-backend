@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = 5000;
+const dbConnection = require("./client/dbConnection")
 
 
 app.use(express.json())
@@ -23,6 +24,7 @@ app.use("/api/v1/auth", require("./routes/user"));
 app.listen(PORT, () => {
     try {
         console.log(`Server Running on PORT: ${PORT} `)
+        dbConnection()
     } catch (error) {
         console.error("error Running the Server", error);
 
