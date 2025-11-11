@@ -19,6 +19,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password is required"],
     },
+    verifyCode: {
+        type: String,
+        required: function () {
+            return this.role === "SuperAdmin";
+        },
+    },
+    verifyCodeExpiry: {
+        type: Date,
+        required: function () {
+            return this.role === "SuperAdmin";
+        },
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
     role: {
         type: String,
         enum: [

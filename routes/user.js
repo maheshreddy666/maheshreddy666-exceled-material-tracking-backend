@@ -2,9 +2,14 @@ const express = require("express");
 
 const router = express.Router();
 
-const { userCreation } = require("../controllers/auth/userAuth");
+const { superAdminSignup, userLogin, userUpdate, superAdminCreateUsers, superAdminVerifyAccount } = require("../controllers/auth/superAdminAuth");
 
-router.post("/superAdmin/signUp", userCreation);
+//Supper Admin Auth
+router.post("/superAdmin/signUp", superAdminSignup);
+router.post("/superAdmin/verify/:superAdminId", superAdminVerifyAccount);
+router.post("/superAdmin/login", userLogin);
+router.put("/superAdmin/update/:superadminId/:userId", userUpdate);
+router.post("/superAdmin/createUsers/:superadminId/", superAdminCreateUsers);
 
 
 
